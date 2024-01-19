@@ -13,7 +13,7 @@
 
         <div>
             <label for="description">Descrizione:</label>
-            <textarea name="description" id="description" rows="4" required></textarea>
+            <textarea name="description" id="description" required></textarea>
         </div>
 
         <div>
