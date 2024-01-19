@@ -15,10 +15,14 @@
                 @method('DELETE')
                 <button type="button" onclick="confirmDelete({{ $comic->id }})">Elimina Comic</button>
             </form>
+            <form action="{{ route('comics.edit', $comic->id) }}" method="get" style="display: inline;">
+                <button type="submit">Modifica Comic</button>
+            </form>
         @endforeach
     </ol>
 
     <a href="{{ url('/') }}">Inizio</a>
+    
 
     <script>
         function confirmDelete(comicId) {
