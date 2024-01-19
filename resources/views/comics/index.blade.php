@@ -10,16 +10,22 @@
                 <a href="{{ route('comics.show', $comic->id) }}">{{ $comic->title }}</a>
             </li>
 
-            <form action="{{ route('comics.destroy', $comic->id) }}" method="post">
+            <form action="{{ route('comics.destroy', $comic->id) }}" method="post" id="deleteForm{{ $comic->id }}">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Elimina Comic</button>
+                <button type="button" onclick="confirmDelete({{ $comic->id }})">Elimina Comic</button>
             </form>
         @endforeach
     </ol>
 
     <a href="{{ url('/') }}">Inizio</a>
 
-
+    <script>
+        function confirmDelete(comicId) {
+            if (confirm('Sei sicuro di voler cancellare questo Comic?')) {
+                document.getElementById('deleteForm' + comicId).submit();
+            }
+        }
+    </script>
 
 @endsection
