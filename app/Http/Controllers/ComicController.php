@@ -77,4 +77,6 @@ class ComicController extends Controller
 
         return redirect()->route('comics.index')->with('success', 'Comic modificato con successo');
     }
+    
+
 }

@@ -1,60 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Crea Comic</h1>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h1>Create Comic</h1>
+            </div>
+            <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-    @if ($errors->any())
-        <div>
-            <h3>Errori</h3>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+                <form action="{{ route('comics.store') }}" method="post">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thumb">Thumbnail URL:</label>
+                        <input type="text" class="form-control" id="thumb" name="thumb" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="text" class="form-control" id="price" name="price" value="$" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="series">Series:</label>
+                        <input type="text" class="form-control" id="series" name="series" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sale_date">Sale Date:</label>
+                        <input type="date" class="form-control" id="sale_date" name="sale_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Type:</label>
+                        <select class="form-control" id="type" name="type" required>
+                            <option value="comic book">Comic Book</option>
+                            <option value="graphic novel">Graphic Novel</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Create Comic</button>
+                    <a href="{{ route('comics.index') }}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
         </div>
-    @endif
-
-    <form action="{{ route('comics.store') }}" method="post">
-        @csrf
-
-        <div>
-            <label for="title">Titolo:</label>
-            <input type="text" name="title" id="title" >
-        </div>
-
-        <div>
-            <label for="description">Descrizione:</label>
-            <textarea name="description" id="description" ></textarea>
-        </div>
-
-        <div>
-            <label for="thumb">Copertina URL:</label>
-            <input type="text" name="thumb" id="thumb" >
-        </div>
-
-        <div>
-            <label for="price">Prezzo:</label>
-            <input type="text" name="price" id="price"  value="$">
-        </div>
-
-        <div>
-            <label for="series">Serie:</label>
-            <input type="text" name="series" id="series" >
-        </div>
-
-        <div>
-            <label for="sale_date">Sale Date:</label>
-            <input type="date" name="sale_date" id="sale_date" >
-        </div>
-
-        <div>
-            <label for="type">Type:</label>
-            <select class="form-select" id="type" name="type" >
-                <option value="comic book">Comic Book</option>
-                <option value="graphic novel">Graphic Novel</option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Crea Comic</button>
-    </form>
-
-    <a href="{{ url('/') }}">Inizio</a>
+    </div>
 @endsection
